@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;700&display=swap');
 
 * {
   font-family: 'Montserrat', sans-serif;
@@ -39,9 +39,10 @@ code {
 }
 
 .input-image{
-  height: 430px;
-  width: 330px;
+  height: 480px;
+  width: 370px;
 }
+
 .input-image img {
   max-width: 100%;
   max-height: 100%;
@@ -64,36 +65,26 @@ code {
   background-color: rgba(0, 0, 0, 0);
 }
 
-/* .flexbox-container button::after {
-  content: '';
-  position: absolute;
-  width: 100%;
-  transform: scaleX(0);
-  height: 2px;
-  bottom: 0;
-  left: 0;
-  background-color: #000000;
-  transform-origin: bottom right;
-  transition: 0.2s;
-} */
+
+.flexbox-container button {
+  font-weight: 500;
+  border-radius: 17px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
 
 .flexbox-container button:hover{
   color: white;
   background-color: #33a9e9;
-  border-radius: 20px;
-  padding-top: 7px;
-  padding-bottom: 7px;
-}
-
-.flex-item {
-  margin: 30px;
+  font-weight: 700
 }
 
 .flexbox-container {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  max-width: 700px;
+  max-width: 900px;
   margin: auto;
 }
 
@@ -104,20 +95,11 @@ code {
   }
 }
 
-.modal-body{
-  height: 500px;
-  width: 500px;
-  overflow: hidden;
-}
-
-.modal-body:hover{
-  overflow-y: auto;
-}
 
 .image-container {
   display: flex;
-  height: 450px;
-  width: 350px;
+  height: 500px;
+  width: 390px;
   align-items: center;
   text-align: center;
   border-width: 1px;
@@ -131,7 +113,7 @@ code {
   transition: border .24s ease-in-out;
 }
 
-.image-container button{
+.image-container button {
   height: 20px;
   font-size: 15px;
   font-weight: 300;
