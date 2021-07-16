@@ -9,7 +9,7 @@ import Howtouse from './howtouse';
 
 function Handwrite() {
   return (
-    <div className="handwrite">
+    <div className="handwrite" id="Home">
       <img src={logo} alt="handwrite logo" className="Handwrite-Logo" />
       <Navbar />
       <Mainform />

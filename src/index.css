@@ -1,11 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400&display=swap');
 
-body {
-  margin: 0;
-  font-family: 'Montserrat',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+* {
+  font-family: 'Montserrat', sans-serif;
 }
 
 code {
@@ -58,7 +54,7 @@ code {
   align-items: center;
   text-decoration: none;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 700;
   letter-spacing: 1px;
   padding: 10px 20px 10px;
   cursor: pointer;
@@ -83,8 +79,10 @@ code {
 
 .flexbox-container button:hover{
   color: white;
-  background-color: #44bcff;
+  background-color: #33a9e9;
   border-radius: 20px;
+  padding-top: 7px;
+  padding-bottom: 7px;
 }
 
 .flex-item {
@@ -144,7 +142,7 @@ code {
   border-style: solid;
   border-radius: 10px;
   border-width: 2px;
-  background-color: #44bcff;
+  background-color: #33a9e9;
   color: hsl(0, 0%, 100%);
   padding-left: 16px;
   padding-right: 16px;
