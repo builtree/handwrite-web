@@ -1,7 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400&display=swap');
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: 'Montserrat',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -17,6 +18,23 @@ code {
   display: block;
   margin: auto;
   padding-top: 2%;
+  padding-bottom: 1%;
+}
+
+.About-Title {
+  width: 150px;
+  height: 110px;
+  display: block;
+  margin: auto;
+  padding-top: 5%;
+}
+
+.Howtouse-Title {
+  width: 300px;
+  height: 120px;
+  display: block;
+  margin: auto;
+  padding-top: 5%;
 }
 
 .input-form{
@@ -39,19 +57,18 @@ code {
   color: black;
   align-items: center;
   text-decoration: none;
-  font-size: 15px;
-  font-weight: 300;
+  font-size: 16px;
+  font-weight: 500;
   letter-spacing: 1px;
-  padding: 7px 20px 7px;
-  border: 1px solid black;
+  padding: 10px 20px 10px;
   cursor: pointer;
   margin: 5px;
-
+  border: #fafafa;
   position: relative;
   background-color: rgba(0, 0, 0, 0);
 }
 
-.flexbox-container button::after {
+/* .flexbox-container button::after {
   content: '';
   position: absolute;
   width: 100%;
@@ -62,11 +79,12 @@ code {
   background-color: #000000;
   transform-origin: bottom right;
   transition: 0.2s;
-}
+} */
 
-.flexbox-container button:hover::after {
-  transform: scaleX(1);
-  transform-origin: bottom left;
+.flexbox-container button:hover{
+  color: white;
+  background-color: #44bcff;
+  border-radius: 20px;
 }
 
 .flex-item {
@@ -75,11 +93,13 @@ code {
 
 .flexbox-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
+  max-width: 700px;
+  margin: auto;
 }
 
-@media all and (max-width: 500px) {
+@media all and (max-width: 600px) {
   .flexbox-container {
     flex-direction: column;
     justify-content: space-between;
@@ -124,7 +144,7 @@ code {
   border-style: solid;
   border-radius: 10px;
   border-width: 2px;
-  background-color: rgb(46, 135, 250);
+  background-color: #44bcff;
   color: hsl(0, 0%, 100%);
   padding-left: 16px;
   padding-right: 16px;
