@@ -5,7 +5,6 @@ import Grid from '@material-ui/core/Grid';
 import { Button } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import { HighlightOffOutlined } from '@material-ui/icons';
-import Container from '@material-ui/core/Container';
 
 
 function Mainform(props) {
@@ -14,7 +13,6 @@ function Mainform(props) {
   const [fetching, setFetching] = useState(true);
   const {
     getInputProps,
-    acceptedFiles,
     open
   } = useDropzone({
     accept: 'image/*',
@@ -74,6 +72,7 @@ function Mainform(props) {
         for (let i = 0; i < 10; i++) {
           fetch("http://handwrite-server.herokuapp.com/handwrite/status/" + path).then((r) => r.json()).then((status) => {
             const status_response = status.status
+            console.log(status_response)
             if (status_response === 0) {
               console.log("Font file ready!");
               stat = 0;
@@ -94,7 +93,7 @@ function Mainform(props) {
             }
           })
           await sleep(5000);
-          if (stat != -1) {
+          if (stat !== -1) {
             break;
           }
         }

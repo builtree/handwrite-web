@@ -1,5 +1,5 @@
 import React from 'react';
-import navdata from './navdata';
+
 const Navbar = () => {
     return (
         // <nav className="navbar">

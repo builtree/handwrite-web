@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Howtouse = () => {
-    return (  
+const HowToUse = () => {
+    return (
         <div className="body">
             <h1 className="Howtouse-Title" id="Howtouse">How To Use?</h1>
             <br />
@@ -35,8 +35,8 @@ const Howtouse = () => {
             <br />
             <br />
         </div>
-        
+
     );
 }
- 
+
 export default Howtouse;
