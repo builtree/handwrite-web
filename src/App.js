@@ -6,8 +6,8 @@ import Home from './Home.js';
 
 const HowToUse = () => {
   return (
-    <div className="body">
-      <h1 className="Howtouse-Title" id="Howtouse">How To Use?</h1>
+    <div className="subsection" id="howtouse">
+      <h1>How To Use?</h1>
       <br />
       <br />
       <br />
@@ -39,14 +39,13 @@ const HowToUse = () => {
       <br />
       <br />
     </div>
-
   );
 }
 
 const About = () => {
   return (
-    <div className="body">
-      <h1 className="About-Title" id="About"> About </h1>
+    <div className="subsection" id="about">
+      <h1>About</h1>
       <br />
       <br />
       <br />
@@ -84,7 +83,7 @@ const About = () => {
 
 function Handwrite() {
   return (
-    <div className="handwrite">
+    <div className="handwrite" id="home">
       <img src={logo} alt="handwrite logo" className="Handwrite-Logo" />
       <Navbar />
       <Home />

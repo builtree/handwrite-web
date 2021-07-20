@@ -2,15 +2,12 @@ import React from 'react';
 
 const Navbar = () => {
     return (
-        // <nav className="navbar">
         <div className="flexbox-container">
-            <div><button >‏‏‎Home</button></div>
-            <div><button>‏‏‎About‎‏‏‎‎</button></div>
-            <div><button>How To Use?</button></div>
-            <div><button>Documentation</button></div>
+            <div><a href="#home">‎<button>Home</button></a></div>
+            <div><a href="#about"><button>‏‏‎About‎‏‏‎‎</button></a></div>
+            <div><a href="#howtouse"><button>How To Use?</button></a></div>
+            <div><a href="https://cod-ed.github.io/handwrite" target="_blank"><button>Documentation</button></a></div>
         </div>
-        // </nav>
-
     );
 }
 

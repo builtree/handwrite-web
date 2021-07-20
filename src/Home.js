@@ -7,7 +7,7 @@ import IconButton from '@material-ui/core/IconButton';
 import { HighlightOffOutlined } from '@material-ui/icons';
 
 
-function Mainform(props) {
+function Home(props) {
   const [image, setImage] = useState(["", null]);
   const [font, setFont] = useState("");
   const [fetching, setFetching] = useState(true);
@@ -46,7 +46,7 @@ function Mainform(props) {
     var font_url;
     setFetching(true);
     fetch(
-      "http://handwrite-server.herokuapp.com/handwrite/input",
+      "http://handwritetest.herokuapp.com/handwrite/input",
       {
         method: 'POST',
         body: formData
@@ -70,7 +70,7 @@ function Mainform(props) {
       else if (response_code === 0) {
         path = data.path;
         for (let i = 0; i < 10; i++) {
-          fetch("http://handwrite-server.herokuapp.com/handwrite/status/" + path).then((r) => r.json()).then((status) => {
+          fetch("http://handwritetest.herokuapp.com/handwrite/status/" + path).then((r) => r.json()).then((status) => {
             const status_response = status.status
             console.log(status_response)
             if (status_response === 0) {
@@ -101,7 +101,7 @@ function Mainform(props) {
     }).then(() => {
       if (stat === 0) {
         fetch(
-          "http://handwrite-server.herokuapp.com/handwrite/fetch/" + path,
+          "http://handwritetest.herokuapp.com/handwrite/fetch/" + path,
           {
             method: 'POST'
           }
@@ -140,7 +140,7 @@ function Mainform(props) {
                 <HighlightOffOutlined />
               </IconButton></h6></center> : ""}
           </div>
-          <div className="submit-form">
+          <div>
             <Button type="submit" variant="outlined" disabled={fetching}>
               CREATE FONT
             </Button>
@@ -153,4 +153,4 @@ function Mainform(props) {
   );
 }
 
-export default Mainform;
+export default Home;
