@@ -108,6 +108,14 @@ code {
         flex-direction: column;
         justify-content: space-between;
     }
+    .submit-button {
+      padding-top: 20px;
+    }
+}
+
+.grid {
+  max-width: 1200px;
+  margin: auto;
 }
 
 .image-container {

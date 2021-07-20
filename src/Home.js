@@ -117,7 +117,7 @@ function Home(props) {
   }
 
   return (
-    <div>
+    <div className="grid">
       <form onSubmit={(e) => sendImage(e)}>
         <Grid container direction="row" justify="space-around" alignItems="center">
           <div><br />
@@ -140,7 +140,8 @@ function Home(props) {
                 <HighlightOffOutlined />
               </IconButton></h6></center> : ""}
           </div>
-          <div>
+          <div className="submit-button">
+            &emsp;
             <Button type="submit" variant="outlined" disabled={fetching}>
               CREATE FONT
             </Button>

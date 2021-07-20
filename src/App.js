@@ -78,8 +78,8 @@ function Handwrite() {
       <img src={logo} alt="handwrite logo" className="Handwrite-Logo" />
       <Navbar />
       <Home />
-      <About />
       <HowToUse />
+      <About />
       <div className="bottom-container">
       </div>
     </div>
