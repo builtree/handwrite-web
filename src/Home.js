@@ -5,16 +5,14 @@ import Grid from '@material-ui/core/Grid';
 import { Button } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import { HighlightOffOutlined } from '@material-ui/icons';
-import Container from '@material-ui/core/Container';
 
 
-function Mainform(props) {
+function Home(props) {
   const [image, setImage] = useState(["", null]);
   const [font, setFont] = useState("");
   const [fetching, setFetching] = useState(true);
   const {
     getInputProps,
-    acceptedFiles,
     open
   } = useDropzone({
     accept: 'image/*',
@@ -33,6 +31,9 @@ function Mainform(props) {
     setFetching(true);
   }
 
+  function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
   function sendImage(event) {
     event.preventDefault();
     if (!image[1]) {
@@ -45,30 +46,62 @@ function Mainform(props) {
     var font_url;
     setFetching(true);
     fetch(
-      "http://127.0.0.1:8000/handwrite/input",
+      "http://handwritetest.herokuapp.com/handwrite/input",
       {
         method: 'POST',
         body: formData
       }
     ).then((r) => r.json()).then(async (data) => {
-      path = data.path;
-      for (let i = 0; i < 10; i++) {
-        fetch("http://127.0.0.1:8000/handwrite/status/" + path).then((r) => r.json()).then((status) => {
-          if (status.status === 0) {
-            console.log("Font file ready!");
-            stat = 0;
+
+      const response_code = data.response_code
+      const message = data.message
+      if (response_code === 1) {
+        setFetching(false);
+        console.log(message)
+      }
+      else if (response_code === 2) {
+        setFetching(false);
+        console.log(message)
+      }
+      else if (response_code === 3) {
+        setFetching(false);
+        console.log(message)
+      }
+      else if (response_code === 0) {
+        path = data.path;
+        for (let i = 0; i < 10; i++) {
+          fetch("http://handwritetest.herokuapp.com/handwrite/status/" + path).then((r) => r.json()).then((status) => {
+            const status_response = status.status
+            console.log(status_response)
+            if (status_response === 0) {
+              console.log("Font file ready!");
+              stat = 0;
+            }
+            else if (status_response === 1) {
+              stat = -1;
+              console.log("Still Processing!");
+            }
+            else if (status_response === 2) {
+              stat = 2;
+              console.log("Unable to Process!");
+              setFetching(false)
+            }
+            else if (status_response === 3) {
+              stat = 3;
+              setFetching(false)
+              console.log("Not Found!")
+            }
+          })
+          await sleep(5000);
+          if (stat !== -1) {
+            break;
           }
-        })
-        console.log(stat);
-        if (stat === 0) {
-          break;
         }
-        await new Promise(r => setTimeout(r, 5000));
       }
     }).then(() => {
       if (stat === 0) {
         fetch(
-          "http://127.0.0.1:8000/handwrite/fetch/" + path,
+          "http://handwritetest.herokuapp.com/handwrite/fetch/" + path,
           {
             method: 'POST'
           }
@@ -107,7 +140,7 @@ function Mainform(props) {
                 <HighlightOffOutlined />
               </IconButton></h6></center> : ""}
           </div>
-          <div className="submit-form">
+          <div>
             <Button type="submit" variant="outlined" disabled={fetching}>
               CREATE FONT
             </Button>
@@ -120,4 +153,4 @@ function Mainform(props) {
   );
 }
 
-  export default Mainform;
+export default Home;
