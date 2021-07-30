@@ -5,8 +5,6 @@ import Grid from '@material-ui/core/Grid';
 import { Button } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import { HighlightOffOutlined } from '@material-ui/icons';
-import sample from './assets/handwrite_sample.pdf';
-
 
 function Home(props) {
   const [image, setImage] = useState(["", null]);
@@ -142,7 +140,7 @@ function Home(props) {
               </IconButton></h6></center> : ""}
           </div>
           <div className="submit-button">
-            <Button variant="outlined" href={sample} download="https://github.com/cod-ed/handwrite/blob/dev/handwrite_sample.pdf">Download Sample Form</Button><br /><br />
+            {/* <Button variant="outlined" download="https://github.com/cod-ed/handwrite/blob/dev/handwrite_sample.pdf">Download Sample Form</Button><br /><br /> */}
             <Button type="submit" variant="outlined" disabled={fetching}>
               CREATE FONT
             </Button>
