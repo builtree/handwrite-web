@@ -68,11 +68,28 @@ code {
     font-weight: 700;
 }
 
+.navbar-background {
+    width: 100%;
+    background-color: white;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    box-shadow: 0 3px 6px -4px grey;
+    -webkit-box-shadow: 0 3px 6px -4px grey;
+    -moz-box-shadow: 0 3px 6px -4px grey;
+}
+
 .flexbox-container {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     max-width: 900px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     margin: auto;
 }
 
