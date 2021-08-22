@@ -41,7 +41,6 @@ const HowToUse = () => {
         <br /> <br />
         <img src="https://raw.githubusercontent.com/cod-ed/assets/handwrite/handwrite_sentence.png"></img>
       </div>
-      <br />
   );
 }
 
