@@ -16,7 +16,7 @@ const HowToUse = () => {
           <br />
           <ol type="1">
             <li> Take a printout of the <a href='https://github.com/cod-ed/handwrite/raw/dev/handwrite_sample.pdf'>sample form</a>.</li> <br />
-            <li> Fill the form using the image below as a reference.</li> <br />
+            <li> Fill the form using the reference image.</li> <br />
             <li> Scan the filled form using a scanner, or any scanning application on your phone.</li> <br />
             <li> Save the scan in JPEG format.</li> <br />
           </ol>
@@ -41,6 +41,7 @@ const HowToUse = () => {
         <br /> <br />
         <img src="https://raw.githubusercontent.com/cod-ed/assets/handwrite/handwrite_sentence.png"></img>
       </div>
+      <br />
   );
 }
 
