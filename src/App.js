@@ -49,37 +49,26 @@ const About = () => {
     <div className="subsection" id="about">
       <h1>About</h1>
       <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
+      <div>
+        Ever had those long-winded assignments, that the teacher always wants handwritten? Is your written work messy because you think faster than you write? <br /><br /> <b>Wish there was a font for your handwriting?</b> <br /><br /> Handwrite helps you do exactly that! Refer to the <a href="#howtouse">How to Use</a> section for more details.
+      </div>
+      <br /><br />
+      <h2>Why did we build this?</h2>
+      <div><br />Handwriting stuff is a struggle, it’s tiring, time consuming and inconsistent but still is a requirement for so many assignments, tests etc. We, as developers, love to type on our keyboard far more than writing and it’s practical, isn’t it? 
+      So we decided to build something that can help us type out our writing. Being experienced in Python and wanting to learn Image Processing, this was the perfect project, so we got started!
+      </div>
+      <br /><br />
+      <h2>Want to Contribute?</h2>
+      <div><br />We &#9829; open-source! <br /> We look forward to your contributions! Don’t shy away if you are a beginner, we are happy to help you get started. <br /><br />
+      <div className="about-list"><ul>
+      The following repositories help handwrite work: <br/><br/>
+        <li><a href="https://github.com/cod-ed/handwrite">Handwrite:</a> Core Handwrite project build with Python. It also features a CLI interface for handwrite. (Python) <br/> You can get started with how core handwrite works <a href="https://cod-ed.github.io/handwrite/">here.</a></li><br />
+        <li><a href="https://github.com/cod-ed/handwrite-web">Handwrite Web:</a> Frontend of handwrite web. (React)</li><br />
+        <li><a href="https://github.com/cod-ed/handwrite-server">Handwrite Server:</a> Backend for handwrite, hosted on heroku. (Python, Flask)</li><br />
+      </ul>
+      </div>
+      </div>
     </div>
-
   );
 }
 
