@@ -20,7 +20,17 @@ code {
 .subsection {
     text-align: center;
     margin: auto;
-    padding-top: 5%;
+    padding: 20px;
+    font-size: large;
+}
+
+.subsection li {
+    text-align: left;
+}
+
+.about-list {
+    width: auto;
+    display: inline-block;
 }
 
 .input-form {
