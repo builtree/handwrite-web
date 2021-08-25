@@ -23,6 +23,7 @@ const Navbar = () => {
                     <a
                         href="https://cod-ed.github.io/handwrite"
                         target="_blank"
+                        rel="noopener noreferrer"
                     >
                         <button>Documentation</button>
                     </a>

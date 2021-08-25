@@ -33,13 +33,13 @@ const HowToUse = () => {
         <div>
           Your form should look like this:
           <br /> <br />
-          <img src="https://raw.githubusercontent.com/cod-ed/assets/handwrite/handwrite_filled_form.jpg" className='image-container'></img>
+          <img src="https://raw.githubusercontent.com/cod-ed/assets/handwrite/handwrite_filled_form.jpg" className='image-container' alt="Filled Form Example"></img>
         </div>
       </Grid>
         <br /> <br />
         Here's the end result!
         <br /> <br />
-        <img src="https://raw.githubusercontent.com/cod-ed/assets/handwrite/handwrite_sentence.png"></img>
+        <img src="https://raw.githubusercontent.com/cod-ed/assets/handwrite/handwrite_sentence.png" alt="Output Example"></img>
       </div>
   );
 }
@@ -50,7 +50,7 @@ const About = () => {
       <h1>About</h1>
       <br />
       <div>
-        Ever had those long-winded assignments, that the teacher always wants handwritten? Is your written work messy because you think faster than you write? <br /><br /> <b>Wish there was a font for your handwriting?</b> <br /><br /> Handwrite helps you do exactly that! Refer to the <a href="#howtouse">How to Use</a> section for more details.
+        Ever had those long-winded assignments, that the teacher always wants handwritten? Is your written work messy because you think faster than you write? <br /><br /> <i>Wish there was a font for your handwriting?</i> <br /><br /> Handwrite helps you do exactly that! Refer to the <a href="#howtouse">How to Use</a> section for more details.
       </div>
       <br /><br />
       <h2>Why did we build this?</h2>
@@ -72,13 +72,17 @@ const About = () => {
   );
 }
 
+
 function Handwrite() {
   return (
     <div className="handwrite" id="home">
       <img src={logo} alt="handwrite logo" className="Handwrite-Logo" />
       <Navbar />
       <Home />
+      <br/>
       <About />
+      <hr className="divider"/>
+      <br />
       <HowToUse />
       <div className="bottom-container">
       </div>

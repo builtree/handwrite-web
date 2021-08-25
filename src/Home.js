@@ -6,7 +6,6 @@ import { Button } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import { HighlightOffOutlined } from '@material-ui/icons';
 
-
 function Home(props) {
   const [image, setImage] = useState(["", null]);
   const [font, setFont] = useState("");
@@ -117,14 +116,14 @@ function Home(props) {
   }
 
   return (
-    <div>
+    <div className="grid">
       <form onSubmit={(e) => sendImage(e)}>
         <Grid container direction="row" justify="space-around" alignItems="center">
           <div><br />
             <div className="image-container"> <input {...getInputProps()} />
               {image[0] ?
                 <div className="input-image">
-                  <img src={image[0]} />
+                  <img src={image[0]} alt="Selected Form"/>
                 </div> :
                 <div>
                   <h3>Drag 'n' drop your handwritten sample</h3>
@@ -140,7 +139,8 @@ function Home(props) {
                 <HighlightOffOutlined />
               </IconButton></h6></center> : ""}
           </div>
-          <div>
+          <div className="submit-button">
+            <Button variant="outlined" href="https://github.com/cod-ed/handwrite/raw/dev/handwrite_sample.pdf">Download Sample Form</Button><br /><br />
             <Button type="submit" variant="outlined" disabled={fetching}>
               CREATE FONT
             </Button>
