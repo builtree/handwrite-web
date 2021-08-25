@@ -55,7 +55,7 @@ code {
     align-items: center;
     text-decoration: none;
     font-size: 16px;
-    font-weight: 700;
+    font-weight: 500;
     letter-spacing: 1px;
     padding: 10px 20px 10px;
     cursor: pointer;
@@ -63,10 +63,6 @@ code {
     border: #fafafa;
     position: relative;
     background-color: rgba(0, 0, 0, 0);
-}
-
-.flexbox-container button {
-    font-weight: 500;
     border-radius: 17px;
     padding-top: 5px;
     padding-bottom: 5px;
@@ -109,13 +105,14 @@ code {
         justify-content: space-between;
     }
     .submit-button {
-      padding-top: 20px;
+        padding-top: 20px;
     }
 }
 
-.grid {
-  max-width: 1200px;
-  margin: auto;
+.grid,
+.subsection {
+    max-width: 1500px;
+    margin: auto;
 }
 
 .image-container {
@@ -159,4 +156,12 @@ code {
 
 .image-container button:hover {
     border-color: hsl(0, 0%, 21%);
+}
+
+.divider {
+    color: rgb(61, 61, 61);
+    background-color: rgb(61, 61, 61);
+    height: 4px;
+    width: 25%;
+    margin: auto;
 }
