@@ -140,7 +140,7 @@ function Home(props) {
               </IconButton></h6></center> : ""}
           </div>
           <div className="submit-button">
-            <Button variant="outlined" download="https://github.com/cod-ed/handwrite/blob/dev/handwrite_sample.pdf">Download Sample Form</Button><br /><br />
+            <Button variant="outlined" download="https://github.com/cod-ed/handwrite/raw/dev/handwrite_sample.pdf">Download Sample Form</Button><br /><br />
             <Button type="submit" variant="outlined" disabled={fetching}>
               CREATE FONT
             </Button>
