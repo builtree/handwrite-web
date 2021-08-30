@@ -165,3 +165,41 @@ code {
     width: 25%;
     margin: auto;
 }
+
+.loader {
+    width: 100%;
+    height: 100%;
+    /* position:; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(240, 240, 240, 0.5);
+    font-size: 25px;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgb(22, 124, 158);
+    border-top: 3px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear 0s infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes fade {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

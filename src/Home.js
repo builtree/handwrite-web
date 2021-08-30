@@ -10,6 +10,7 @@ function Home(props) {
   const [image, setImage] = useState(["", null]);
   const [font, setFont] = useState("");
   const [fetching, setFetching] = useState(true);
+  const [loading, setLoading] = useState(false);
   const {
     getInputProps,
     open
@@ -44,6 +45,7 @@ function Home(props) {
     var path;
     var font_url;
     setFetching(true);
+    setLoading(true);
     fetch(
       "http://handwritetest.herokuapp.com/handwrite/input",
       {
@@ -110,46 +112,55 @@ function Home(props) {
           console.log(font_url);
           setFont(font_url);
           setFetching(false);
+          setLoading(false);
         });
       }
     });
   }
 
   return (
-    <div className="grid">
-      <form onSubmit={(e) => sendImage(e)}>
-        <Grid container direction="row" justify="space-around" alignItems="center">
-          <div><br />
-            <div className="image-container"> <input {...getInputProps()} />
-              {image[0] ?
-                <div className="input-image">
-                  <img src={image[0]} alt="Selected Form"/>
-                </div> :
-                <div>
-                  <h3>Drag 'n' drop your handwritten sample</h3>
-                  <h2>OR</h2>
-                  <center><button type="button" onClick={open}><CloudUploadOutlined />
-                    ‎ ‎ ‎Choose file
-                  </button></center>
-                </div>
-              }
+    <>
+      {!loading ? (
+        <div className="loader">
+          <span>Creating your font...</span> &emsp;
+          <div className="spinner"></div>
+        </div>
+      ) : (<> </>)}
+      <div className="grid">
+        <form onSubmit={(e) => sendImage(e)}>
+          <Grid container direction="row" justify="space-around" alignItems="center">
+            <div><br />
+              <div className="image-container"> <input {...getInputProps()} />
+                {image[0] ?
+                  <div className="input-image">
+                    <img src={image[0]} alt="Selected Form" />
+                  </div> :
+                  <div>
+                    <h3>Drag 'n' drop your handwritten sample</h3>
+                    <h2>OR</h2>
+                    <center><button type="button" onClick={open}><CloudUploadOutlined />
+                      ‎ ‎ ‎Choose file
+                    </button></center>
+                  </div>
+                }
+              </div>
+              {image[1] ?
+                <center><h6>{image[1].path}<IconButton aria-label="delete" color="secondary" size="small" onClick={removeFile}>
+                  <HighlightOffOutlined />
+                </IconButton></h6></center> : ""}
             </div>
-            {image[1] ?
-              <center><h6>{image[1].path}<IconButton aria-label="delete" color="secondary" size="small" onClick={removeFile}>
-                <HighlightOffOutlined />
-              </IconButton></h6></center> : ""}
-          </div>
-          <div className="submit-button">
-            <Button variant="outlined" href="https://github.com/cod-ed/handwrite/raw/dev/handwrite_sample.pdf">Download Sample Form</Button><br /><br />
-            <Button type="submit" variant="outlined" disabled={fetching}>
-              CREATE FONT
-            </Button>
-            &emsp;&emsp;&emsp;
-            <Button variant="outlined" href={font} download="font.ttf" style={{ display: Boolean(font) ? "" : "none" }}>Download your font</Button>
-          </div>
-        </Grid>
-      </form>
-    </div>
+            <div className="submit-button">
+              <Button variant="outlined" href="https://github.com/cod-ed/handwrite/raw/dev/handwrite_sample.pdf">Download Sample Form</Button><br /><br />
+              <Button type="submit" variant="outlined" disabled={fetching}>
+                CREATE FONT
+              </Button>
+              <br /><br />
+              <Button variant="outlined" href={font} download="font.ttf" style={{ display: Boolean(font) ? "" : "none" }}>Download your font</Button>
+            </div>
+          </Grid>
+        </form>
+      </div>
+    </>
   );
 }
 
