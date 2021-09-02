@@ -9,8 +9,17 @@ import { HighlightOffOutlined } from '@material-ui/icons';
 function Home(props) {
   const [image, setImage] = useState(["", null]);
   const [font, setFont] = useState("");
-  const [fetching, setFetching] = useState(true);
-  const [loading, setLoading] = useState(false);
+  const [currentState, setCurrentState] = useState(0);
+  var state = {
+    0: "Not doing anything",
+    1: "Image uploaded.",
+    2: "Sending image...",
+    3: "Generating your font...",
+    4: "Fetching your font...",
+    5: "Fetched!",
+    6: "Error"
+  }
+
   const {
     getInputProps,
     open
@@ -22,13 +31,13 @@ function Home(props) {
     onDrop: acceptedFiles => {
       console.log(acceptedFiles[0]);
       setImage([URL.createObjectURL(acceptedFiles[0]), acceptedFiles[0]]);
-      setFetching(false);
+      setCurrentState(1);
     }
   });
 
   const removeFile = () => {
     setImage(["", null]);
-    setFetching(true);
+    setCurrentState(0);
   }
 
   function sleep(ms) {
@@ -44,8 +53,7 @@ function Home(props) {
     var stat = -1;
     var path;
     var font_url;
-    setFetching(true);
-    setLoading(true);
+    setCurrentState(2);
     fetch(
       "http://handwritetest.herokuapp.com/handwrite/input",
       {
@@ -57,18 +65,19 @@ function Home(props) {
       const response_code = data.response_code
       const message = data.message
       if (response_code === 1) {
-        setFetching(false);
+        setCurrentState(6);
         console.log(message)
       }
       else if (response_code === 2) {
-        setFetching(false);
+        setCurrentState(6);
         console.log(message)
       }
       else if (response_code === 3) {
-        setFetching(false);
+        setCurrentState(6);
         console.log(message)
       }
       else if (response_code === 0) {
+        setCurrentState(3);
         path = data.path;
         for (let i = 0; i < 10; i++) {
           fetch("http://handwritetest.herokuapp.com/handwrite/status/" + path).then((r) => r.json()).then((status) => {
@@ -85,11 +94,11 @@ function Home(props) {
             else if (status_response === 2) {
               stat = 2;
               console.log("Unable to Process!");
-              setFetching(false)
+              setCurrentState(6);
             }
             else if (status_response === 3) {
               stat = 3;
-              setFetching(false)
+              setCurrentState(6);
               console.log("Not Found!")
             }
           })
@@ -101,6 +110,7 @@ function Home(props) {
       }
     }).then(() => {
       if (stat === 0) {
+        setCurrentState(4);
         fetch(
           "http://handwritetest.herokuapp.com/handwrite/fetch/" + path,
           {
@@ -111,18 +121,21 @@ function Home(props) {
           font_url = URL.createObjectURL(data);
           console.log(font_url);
           setFont(font_url);
-          setFetching(false);
-          setLoading(false);
+          setCurrentState(5);
         });
       }
     });
   }
 
+  function loading() {
+    return [2, 3, 4].includes(currentState);
+  }
+
   return (
     <>
-      {!loading ? (
+      {loading() ? (
         <div className="loader">
-          <span>Creating your font...</span> &emsp;
+          {state[currentState]}
           <div className="spinner"></div>
         </div>
       ) : (<> </>)}
@@ -145,13 +158,13 @@ function Home(props) {
                 }
               </div>
               {image[1] ?
-                <center><h6>{image[1].path}<IconButton aria-label="delete" color="secondary" size="small" onClick={removeFile}>
+                <center><h6>{image[1].path}<IconButton aria-label="delete" color="secondary" size="small" onClick={removeFile} disabled={loading()}>
                   <HighlightOffOutlined />
                 </IconButton></h6></center> : ""}
             </div>
             <div className="submit-button">
               <Button variant="outlined" href="https://github.com/cod-ed/handwrite/raw/dev/handwrite_sample.pdf">Download Sample Form</Button><br /><br />
-              <Button type="submit" variant="outlined" disabled={fetching}>
+              <Button type="submit" variant="outlined" disabled={currentState !== 1}>
                 CREATE FONT
               </Button>
               <br /><br />
