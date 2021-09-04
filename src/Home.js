@@ -43,6 +43,7 @@ function Home(props) {
   function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
+
   function sendImage(event) {
     event.preventDefault();
     if (!image[1]) {
@@ -50,6 +51,8 @@ function Home(props) {
     }
     let formData = new FormData();
     formData.append("image", image[1]);
+    var response;
+    var status;
     var stat = -1;
     var path;
     var font_url;
@@ -61,7 +64,6 @@ function Home(props) {
         body: formData
       }
     ).then((r) => r.json()).then(async (data) => {
-
       const response_code = data.response_code
       const message = data.message
       if (response_code === 1) {
@@ -80,28 +82,29 @@ function Home(props) {
         setCurrentState(3);
         path = data.path;
         for (let i = 0; i < 10; i++) {
-          fetch("http://handwritetest.herokuapp.com/handwrite/status/" + path).then((r) => r.json()).then((status) => {
-            const status_response = status.status
-            console.log(status_response)
-            if (status_response === 0) {
-              console.log("Font file ready!");
-              stat = 0;
-            }
-            else if (status_response === 1) {
-              stat = -1;
-              console.log("Still Processing!");
-            }
-            else if (status_response === 2) {
-              stat = 2;
-              console.log("Unable to Process!");
-              setCurrentState(6);
-            }
-            else if (status_response === 3) {
-              stat = 3;
-              setCurrentState(6);
-              console.log("Not Found!")
-            }
-          })
+          response = await fetch("http://handwritetest.herokuapp.com/handwrite/status/" + path);
+          status = await response.json();
+          const status_response = status.status;
+          console.log(status_response);
+          if (status_response === 0) {
+            console.log("Font file ready!");
+            stat = 0;
+            setCurrentState(4);
+          }
+          else if (status_response === 1) {
+            console.log("Still Processing!");
+            stat = -1;
+          }
+          else if (status_response === 2) {
+            console.log("Unable to Process!");
+            stat = 2;
+            setCurrentState(6);
+          }
+          else if (status_response === 3) {
+            console.log("Not Found!");
+            stat = 3;
+            setCurrentState(6);
+          }
           await sleep(5000);
           if (stat !== -1) {
             break;
@@ -110,7 +113,6 @@ function Home(props) {
       }
     }).then(() => {
       if (stat === 0) {
-        setCurrentState(4);
         fetch(
           "http://handwritetest.herokuapp.com/handwrite/fetch/" + path,
           {
@@ -164,7 +166,7 @@ function Home(props) {
             </div>
             <div className="submit-button">
               <Button variant="outlined" href="https://github.com/cod-ed/handwrite/raw/dev/handwrite_sample.pdf">Download Sample Form</Button><br /><br />
-              <Button type="submit" variant="outlined" disabled={currentState !== 1}>
+              <Button type="submit" variant="outlined" disabled={loading()}>
                 CREATE FONT
               </Button>
               <br /><br />

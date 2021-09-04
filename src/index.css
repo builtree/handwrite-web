@@ -83,6 +83,7 @@ code {
     box-shadow: 0 3px 6px -4px grey;
     -webkit-box-shadow: 0 3px 6px -4px grey;
     -moz-box-shadow: 0 3px 6px -4px grey;
+    z-index: 1;
 }
 
 .flexbox-container {
@@ -184,6 +185,7 @@ code {
     border-radius: 50%;
     animation: spin 1s linear 0s infinite;
     margin-left: 12px;
+    z-index: 0;
 }
 
 @keyframes spin {
