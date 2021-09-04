@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { CloudUploadOutlined } from '@material-ui/icons';
 import Grid from '@material-ui/core/Grid';
@@ -20,6 +20,7 @@ function Home(props) {
     6: "Error"
   }
   const url = "http://localhost:8000";
+  var error = useRef("");
 
   const {
     getInputProps,
@@ -69,6 +70,7 @@ function Home(props) {
     ).then((r) => r.json()).then(async (data) => {
       const response_code = data.response_code
       const message = data.message
+      error.current = message;
       if (response_code === 1) {
         setCurrentState(6);
         console.log(message)
@@ -101,11 +103,13 @@ function Home(props) {
           else if (status_response === 2) {
             console.log("Unable to Process!");
             stat = 2;
+            error.current = "Unable to Process!";
             setCurrentState(6);
           }
           else if (status_response === 3) {
             console.log("Not Found!");
             stat = 3;
+            error.current = "Not Found!";
             setCurrentState(6);
           }
           await sleep(5000);
@@ -137,13 +141,14 @@ function Home(props) {
   }
 
   return (
-    <>
-      {loading() ? (
-        <div className="loader">
-          {state[currentState]}
-          <div className="spinner"></div>
-        </div>
-      ) : (<> </>)}
+    <div>
+      <div className="loader" style={{ display: loading() ? "" : "none" }}>
+        {state[currentState]}
+        <div className="spinner"></div>
+      </div>
+      <div className="loader" style={{ display: currentState === 6 ? "" : "none" }}>
+        <font color = "red"> {error.current} </font>
+      </div>
       <div className="grid">
         <form onSubmit={(e) => sendImage(e)}>
           <Grid container direction="row" justify="space-around" alignItems="center">
@@ -185,7 +190,7 @@ function Home(props) {
           </Grid>
         </form>
       </div>
-    </>
+    </div>
   );
 }
 
