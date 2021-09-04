@@ -145,7 +145,7 @@ function Home(props) {
         </div>
       ) : (<> </>)}
       <div className="grid">
-        <form onSubmit={(e) => sendImage(e)} id="mainform">
+        <form onSubmit={(e) => sendImage(e)}>
           <Grid container direction="row" justify="space-around" alignItems="center">
             <div><br />
               <div className="image-container"> <input {...getInputProps()} />
