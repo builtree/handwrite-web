@@ -166,7 +166,7 @@ function Home(props) {
             </div>
             <div className="submit-button">
               <Button variant="outlined" href="https://github.com/cod-ed/handwrite/raw/dev/handwrite_sample.pdf">Download Sample Form</Button><br /><br />
-              <Button type="submit" variant="outlined" disabled={loading()}>
+              <Button type="submit" variant="outlined" disabled={loading() || currentState === 0}>
                 CREATE FONT
               </Button>
               <br /><br />
