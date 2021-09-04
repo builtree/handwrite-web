@@ -9,7 +9,17 @@ import { HighlightOffOutlined } from '@material-ui/icons';
 function Home(props) {
   const [image, setImage] = useState(["", null]);
   const [font, setFont] = useState("");
-  const [fetching, setFetching] = useState(true);
+  const [currentState, setCurrentState] = useState(0);
+  var state = {
+    0: "Not doing anything",
+    1: "Image uploaded.",
+    2: "Sending image...",
+    3: "Generating your font...",
+    4: "Fetching your font...",
+    5: "Fetched!",
+    6: "Error"
+  }
+
   const {
     getInputProps,
     open
@@ -21,18 +31,19 @@ function Home(props) {
     onDrop: acceptedFiles => {
       console.log(acceptedFiles[0]);
       setImage([URL.createObjectURL(acceptedFiles[0]), acceptedFiles[0]]);
-      setFetching(false);
+      setCurrentState(1);
     }
   });
 
   const removeFile = () => {
     setImage(["", null]);
-    setFetching(true);
+    setCurrentState(0);
   }
 
   function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
+
   function sendImage(event) {
     event.preventDefault();
     if (!image[1]) {
@@ -40,10 +51,12 @@ function Home(props) {
     }
     let formData = new FormData();
     formData.append("image", image[1]);
+    var response;
+    var status;
     var stat = -1;
     var path;
     var font_url;
-    setFetching(true);
+    setCurrentState(2);
     fetch(
       "http://handwritetest.herokuapp.com/handwrite/input",
       {
@@ -51,46 +64,47 @@ function Home(props) {
         body: formData
       }
     ).then((r) => r.json()).then(async (data) => {
-
       const response_code = data.response_code
       const message = data.message
       if (response_code === 1) {
-        setFetching(false);
+        setCurrentState(6);
         console.log(message)
       }
       else if (response_code === 2) {
-        setFetching(false);
+        setCurrentState(6);
         console.log(message)
       }
       else if (response_code === 3) {
-        setFetching(false);
+        setCurrentState(6);
         console.log(message)
       }
       else if (response_code === 0) {
+        setCurrentState(3);
         path = data.path;
         for (let i = 0; i < 10; i++) {
-          fetch("http://handwritetest.herokuapp.com/handwrite/status/" + path).then((r) => r.json()).then((status) => {
-            const status_response = status.status
-            console.log(status_response)
-            if (status_response === 0) {
-              console.log("Font file ready!");
-              stat = 0;
-            }
-            else if (status_response === 1) {
-              stat = -1;
-              console.log("Still Processing!");
-            }
-            else if (status_response === 2) {
-              stat = 2;
-              console.log("Unable to Process!");
-              setFetching(false)
-            }
-            else if (status_response === 3) {
-              stat = 3;
-              setFetching(false)
-              console.log("Not Found!")
-            }
-          })
+          response = await fetch("http://handwritetest.herokuapp.com/handwrite/status/" + path);
+          status = await response.json();
+          const status_response = status.status;
+          console.log(status_response);
+          if (status_response === 0) {
+            console.log("Font file ready!");
+            stat = 0;
+            setCurrentState(4);
+          }
+          else if (status_response === 1) {
+            console.log("Still Processing!");
+            stat = -1;
+          }
+          else if (status_response === 2) {
+            console.log("Unable to Process!");
+            stat = 2;
+            setCurrentState(6);
+          }
+          else if (status_response === 3) {
+            console.log("Not Found!");
+            stat = 3;
+            setCurrentState(6);
+          }
           await sleep(5000);
           if (stat !== -1) {
             break;
@@ -109,47 +123,59 @@ function Home(props) {
           font_url = URL.createObjectURL(data);
           console.log(font_url);
           setFont(font_url);
-          setFetching(false);
+          setCurrentState(5);
         });
       }
     });
   }
 
+  function loading() {
+    return [2, 3, 4].includes(currentState);
+  }
+
   return (
-    <div className="grid">
-      <form onSubmit={(e) => sendImage(e)}>
-        <Grid container direction="row" justify="space-around" alignItems="center">
-          <div><br />
-            <div className="image-container"> <input {...getInputProps()} />
-              {image[0] ?
-                <div className="input-image">
-                  <img src={image[0]} alt="Selected Form"/>
-                </div> :
-                <div>
-                  <h3>Drag 'n' drop your handwritten sample</h3>
-                  <h2>OR</h2>
-                  <center><button type="button" onClick={open}><CloudUploadOutlined />
-                    ‎ ‎ ‎Choose file
-                  </button></center>
-                </div>
-              }
+    <>
+      {loading() ? (
+        <div className="loader">
+          {state[currentState]}
+          <div className="spinner"></div>
+        </div>
+      ) : (<> </>)}
+      <div className="grid">
+        <form onSubmit={(e) => sendImage(e)}>
+          <Grid container direction="row" justify="space-around" alignItems="center">
+            <div><br />
+              <div className="image-container"> <input {...getInputProps()} />
+                {image[0] ?
+                  <div className="input-image">
+                    <img src={image[0]} alt="Selected Form" />
+                  </div> :
+                  <div>
+                    <h3>Drag 'n' drop your handwritten sample</h3>
+                    <h2>OR</h2>
+                    <center><button type="button" onClick={open}><CloudUploadOutlined />
+                      ‎ ‎ ‎Choose file
+                    </button></center>
+                  </div>
+                }
+              </div>
+              {image[1] ?
+                <center><h6>{image[1].path}<IconButton aria-label="delete" color="secondary" size="small" onClick={removeFile} disabled={loading()}>
+                  <HighlightOffOutlined />
+                </IconButton></h6></center> : ""}
             </div>
-            {image[1] ?
-              <center><h6>{image[1].path}<IconButton aria-label="delete" color="secondary" size="small" onClick={removeFile}>
-                <HighlightOffOutlined />
-              </IconButton></h6></center> : ""}
-          </div>
-          <div className="submit-button">
-            <Button variant="outlined" href="https://github.com/cod-ed/handwrite/raw/dev/handwrite_sample.pdf">Download Sample Form</Button><br /><br />
-            <Button type="submit" variant="outlined" disabled={fetching}>
-              CREATE FONT
-            </Button>
-            &emsp;&emsp;&emsp;
-            <Button variant="outlined" href={font} download="font.ttf" style={{ display: Boolean(font) ? "" : "none" }}>Download your font</Button>
-          </div>
-        </Grid>
-      </form>
-    </div>
+            <div className="submit-button">
+              <Button variant="outlined" href="https://github.com/cod-ed/handwrite/raw/dev/handwrite_sample.pdf">Download Sample Form</Button><br /><br />
+              <Button type="submit" variant="outlined" disabled={loading() || currentState === 0}>
+                CREATE FONT
+              </Button>
+              <br /><br />
+              <Button variant="outlined" href={font} download="font.ttf" style={{ display: Boolean(font) ? "" : "none" }}>Download your font</Button>
+            </div>
+          </Grid>
+        </form>
+      </div>
+    </>
   );
 }
 
