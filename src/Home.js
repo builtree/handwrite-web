@@ -19,6 +19,7 @@ function Home(props) {
     5: "Fetched!",
     6: "Error"
   }
+  const url = "http://localhost:8000";
   var error = useRef("");
 
   const {
@@ -51,7 +52,9 @@ function Home(props) {
       return
     }
     let formData = new FormData();
+    var researchOption = document.getElementById("researchOption").checked;
     formData.append("image", image[1]);
+    formData.append("research", researchOption);
     var response;
     var status;
     var stat = -1;
@@ -59,7 +62,7 @@ function Home(props) {
     var font_url;
     setCurrentState(2);
     fetch(
-      "http://handwritetest.herokuapp.com/handwrite/input",
+      url + "/handwrite/input",
       {
         method: 'POST',
         body: formData
@@ -84,7 +87,7 @@ function Home(props) {
         setCurrentState(3);
         path = data.path;
         for (let i = 0; i < 10; i++) {
-          response = await fetch("http://handwritetest.herokuapp.com/handwrite/status/" + path);
+          response = await fetch(url + "/handwrite/status/" + path);
           status = await response.json();
           const status_response = status.status;
           console.log(status_response);
@@ -118,7 +121,7 @@ function Home(props) {
     }).then(() => {
       if (stat === 0) {
         fetch(
-          "http://handwritetest.herokuapp.com/handwrite/fetch/" + path,
+          url + "/handwrite/fetch/" + path,
           {
             method: 'POST'
           }
@@ -174,6 +177,13 @@ function Home(props) {
               <Button type="submit" variant="outlined" disabled={loading() || currentState === 0}>
                 CREATE FONT
               </Button>
+              <br /><br />
+              <div className="form-check">
+                <input className="form-check-input" type="checkbox" id="researchOption" defaultChecked></input>
+                <label className="form-check-label" htmlFor="flexCheckChecked">
+                  Opt-in for research use.
+                </label>
+              </div>
               <br /><br />
               <Button variant="outlined" href={font} download="font.ttf" style={{ display: Boolean(font) ? "" : "none" }}>Download your font</Button>
             </div>
