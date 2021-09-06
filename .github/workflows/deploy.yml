@@ -17,10 +17,10 @@ jobs:
               if: github.ref == 'refs/heads/main'
               run: |
                   export NODE_ENV="production"
-                  export PUBLIC_URL="https://yashlamba.github.io/handwrite-web"
+                  export PUBLIC_URL="https://cod-ed.github.io/handwrite-web"
                   git config --global user.email "yashlamba2000@gmail.com"
                   git config --global user.name "yashlamba"
-                  git remote set-url origin https://yashlamba:${{secrets.TOKEN}}@github.com/yashlamba/handwrite-web
+                  git remote set-url origin https://yashlamba:${{secrets.TOKEN}}@github.com/cod-ed/handwrite-web
                   npm install
                   npm run deploy
 
@@ -28,9 +28,9 @@ jobs:
               if: github.ref == 'refs/heads/dev'
               run: |
                   export NODE_ENV="development"
-                  export PUBLIC_URL="https://yashlamba.github.io/handwrite-web/dev"
+                  export PUBLIC_URL="https://cod-ed.github.io/handwrite-web/dev"
                   git config --global user.email "yashlamba2000@gmail.com"
                   git config --global user.name "yashlamba"
-                  git remote set-url origin https://yashlamba:${{secrets.TOKEN}}@github.com/yashlamba/handwrite-web
+                  git remote set-url origin https://yashlamba:${{secrets.TOKEN}}@github.com/cod-ed/handwrite-web
                   npm install
                   npm run deploydev
