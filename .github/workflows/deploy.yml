@@ -1,0 +1,30 @@
+name: "Deploy"
+
+on: push
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+
+            - uses: actions/setup-node@v2
+              with:
+                  node-version: "16"
+
+            - name: Deploy Production
+              if: github.ref == 'refs/heads/main'
+              run: |
+                  export NODE_ENV="production"
+                  export PUBLIC_URL="https://yashlamba.github.io/handwrite-web"
+                  npm install
+                  npm run deploy
+
+            - name: Deploy Development
+              if: github.ref == 'refs/heads/dev'
+              run: |
+                  export NODE_ENV="development"
+                  export PUBLIC_URL="https://yashlamba.github.io/handwrite-web/dev"
+                  npm install
+                  npm run deploydev

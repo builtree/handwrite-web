@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { API } from './config.js'
 import { useDropzone } from 'react-dropzone';
 import { CloudUploadOutlined } from '@material-ui/icons';
 import Grid from '@material-ui/core/Grid';
@@ -19,7 +20,7 @@ function Home(props) {
     5: "Fetched!",
     6: "Error"
   }
-  const url = "http://localhost:8000";
+
   var error = useRef("");
 
   const {
@@ -62,7 +63,7 @@ function Home(props) {
     var font_url;
     setCurrentState(2);
     fetch(
-      url + "/handwrite/input",
+      API + "/handwrite/input",
       {
         method: 'POST',
         body: formData
@@ -87,7 +88,7 @@ function Home(props) {
         setCurrentState(3);
         path = data.path;
         for (let i = 0; i < 10; i++) {
-          response = await fetch(url + "/handwrite/status/" + path);
+          response = await fetch(API + "/handwrite/status/" + path);
           status = await response.json();
           const status_response = status.status;
           console.log(status_response);
@@ -121,7 +122,7 @@ function Home(props) {
     }).then(() => {
       if (stat === 0) {
         fetch(
-          url + "/handwrite/fetch/" + path,
+          API + "/handwrite/fetch/" + path,
           {
             method: 'POST'
           }
