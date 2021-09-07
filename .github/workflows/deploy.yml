@@ -31,6 +31,7 @@ jobs:
                   git config user.name "GitHub Action" && git config user.email "github-action@github.com"
                   git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
                   npm install
+                  npm run predeploy
                   npm run deploydev
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
