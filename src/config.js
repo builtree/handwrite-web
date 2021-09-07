@@ -1,10 +1,14 @@
 var API_URL;
-if(process.env.NODE_ENV === 'development') {
+if(process.env.REACT_APP_STAGE === 'development') {
     API_URL = 'https://handwritetest.herokuapp.com'
 }
   
-if(process.env.NODE_ENV === 'production') {
+else if(process.env.REACT_APP_STAGE === 'production') {
     API_URL = 'https://handwrite-server.herokuapp.com'
+}
+
+else {
+    API_URL = 'https://localhost:8000'
 }
 
 export const API = API_URL;

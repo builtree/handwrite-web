@@ -18,11 +18,11 @@ jobs:
               run: |
                   git config user.name "GitHub Action" && git config user.email "github-action@github.com"
                   git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+                  export REACT_APP_STAGE=production
                   npm install
                   npm run deploy
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                  NODE_ENV: "production"
                   PUBLIC_URL: "https://cod-ed.github.io/handwrite-web"
 
             - name: Deploy Development
@@ -31,9 +31,9 @@ jobs:
                   git config user.name "GitHub Action" && git config user.email "github-action@github.com"
                   git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
                   npm install
+                  export REACT_APP_STAGE=development
                   npm run predeploy
                   npm run deploydev
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                  NODE_ENV: "production"
                   PUBLIC_URL: "https://cod-ed.github.io/handwrite-web/dev"
