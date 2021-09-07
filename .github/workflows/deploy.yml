@@ -16,21 +16,23 @@ jobs:
             - name: Deploy Production
               if: github.ref == 'refs/heads/main'
               run: |
-                  export NODE_ENV="production"
-                  export PUBLIC_URL="https://cod-ed.github.io/handwrite-web"
-                  git config --global user.email "yashlamba2000@gmail.com"
-                  git config --global user.name "yashlamba"
-                  git remote set-url origin https://yashlamba:${{secrets.TOKEN}}@github.com/cod-ed/handwrite-web
+                  git config user.name "GitHub Action" && git config user.email "github-action@github.com"
+                  git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
                   npm install
                   npm run deploy
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  NODE_ENV: "production"
+                  PUBLIC_URL: "https://cod-ed.github.io/handwrite-web"
 
             - name: Deploy Development
               if: github.ref == 'refs/heads/dev'
               run: |
-                  export NODE_ENV="development"
-                  export PUBLIC_URL="https://cod-ed.github.io/handwrite-web/dev"
-                  git config --global user.email "yashlamba2000@gmail.com"
-                  git config --global user.name "yashlamba"
-                  git remote set-url origin https://yashlamba:${{secrets.TOKEN}}@github.com/cod-ed/handwrite-web
+                  git config user.name "GitHub Action" && git config user.email "github-action@github.com"
+                  git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
                   npm install
                   npm run deploydev
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  NODE_ENV: "production"
+                  PUBLIC_URL: "https://cod-ed.github.io/handwrite-web/dev"
