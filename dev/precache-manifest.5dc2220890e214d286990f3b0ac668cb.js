@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "f67dc84785174344f977",
+    "revision": "cd9d03f6e4db0768d763",
     "url": "https://cod-ed.github.io/handwrite-web/dev/static/css/main.fe4f7003.chunk.css"
   },
   {
-    "revision": "f67dc84785174344f977",
-    "url": "https://cod-ed.github.io/handwrite-web/dev/static/js/main.0ae50021.chunk.js"
+    "revision": "cd9d03f6e4db0768d763",
+    "url": "https://cod-ed.github.io/handwrite-web/dev/static/js/main.02584a4c.chunk.js"
   },
   {
     "revision": "a9fe5b86d8825f861d65",
@@ -24,7 +24,7 @@ self.__precacheManifest = [
     "url": "https://cod-ed.github.io/handwrite-web/dev/static/media/logo.54b0d79c.svg"
   },
   {
-    "revision": "abfe5a81e7074d027dcfa23295a29bf6",
+    "revision": "8d43c865fa967f2283a54d236034b3cb",
     "url": "https://cod-ed.github.io/handwrite-web/dev/index.html"
   }
 ];
