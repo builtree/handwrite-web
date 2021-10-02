@@ -23,6 +23,22 @@ function Home(props) {
 
   var error = useRef("");
 
+  function validateImage(image) {
+    var allowedTypes = ['jpeg', 'jpg', 'png'];
+    var message = '';
+    if (image.size / 1024 / 1024 > 2) {
+      message += 'File size exceeds 2 MiB! ';
+    }
+    if (!allowedTypes.includes(image.type.split("/")[1])) {
+      message += 'File type not supported! Allowed file extensions - ' + allowedTypes.join(", ");
+    }
+    if (message){
+      alert(message);
+      return false;
+    }
+    return true;
+  }
+
   const {
     getInputProps,
     open
@@ -33,8 +49,10 @@ function Home(props) {
     maxFiles: 1,
     onDrop: acceptedFiles => {
       console.log(acceptedFiles[0]);
-      setImage([URL.createObjectURL(acceptedFiles[0]), acceptedFiles[0]]);
-      setCurrentState(1);
+      if(acceptedFiles[0] && validateImage(acceptedFiles[0])) {
+        setImage([URL.createObjectURL(acceptedFiles[0]), acceptedFiles[0]]);
+        setCurrentState(1);
+      }
     }
   });
 
