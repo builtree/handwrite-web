@@ -24,6 +24,7 @@ function Home(props) {
   var error = useRef("");
 
   const {
+    getRootProps,
     getInputProps,
     open
   } = useDropzone({
@@ -154,7 +155,7 @@ function Home(props) {
         <form onSubmit={(e) => sendImage(e)}>
           <Grid container direction="row" justify="space-around" alignItems="center">
             <div><br />
-              <div className="image-container"> <input {...getInputProps()} />
+              <div {...getRootProps({className: 'dropzone'})} className="image-container"> <input {...getInputProps()} />
                 {image[0] ?
                   <div className="input-image">
                     <img src={image[0]} alt="Selected Form" />
