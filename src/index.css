@@ -159,6 +159,59 @@ code {
     border-color: hsl(0, 0%, 21%);
 }
 
+.settings-wrap{
+    margin: 20px;
+    background-color: #fff;
+    width: 400px;
+    border-radius: 5px;
+    /* box-shadow:  0 10px 10px -5px rgba(0, 0, 0, 0.2); */
+}
+
+.settings-wrap h2{
+    margin-top: 10px;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 500;
+    color: black;
+    margin-bottom: 32px;
+}
+
+.input-wrap{
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+}
+
+.form-label{
+    font-size: 20px;
+    margin-bottom: 3px;
+}
+
+.form-input{
+    border: none;
+    background-color: #f3f9fa;;
+    border-radius: 5px;
+    padding: 12px;
+    font-family: inherit;
+    color: inherit;
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, 0);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0);
+    transition: 250ms all ease-in;
+}
+
+.form-input:hover {
+    border: 1px solid rgba(203, 235, 242, 0.987);
+    box-shadow: 0 0 5px rgba(203, 235, 242, 0.987);
+    background: white;
+  }
+  
+  .form-input:focus {
+    border: 1px solid rgba(173, 217, 226, 0.987);
+    box-shadow: 0 0 5px rgba(97, 212, 238, 0.987);
+    background: white;
+  }
+
 .divider {
     color: rgb(61, 61, 61);
     background-color: rgb(61, 61, 61);

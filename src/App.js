@@ -79,7 +79,7 @@ function Handwrite() {
       <img src={logo} alt="handwrite logo" className="Handwrite-Logo" />
       <Navbar />
       <Home />
-      <br/>
+      <br/><br/>
       <About />
       <hr className="divider"/>
       <br />
