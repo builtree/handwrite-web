@@ -23,7 +23,7 @@ jobs:
                   npm run deploy
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                  PUBLIC_URL: "https://cod-ed.github.io/handwrite-web"
+                  PUBLIC_URL: "https://builtree.github.io/handwrite-web"
 
             - name: Deploy Development
               if: github.ref == 'refs/heads/dev'
@@ -36,4 +36,4 @@ jobs:
                   npm run deploydev
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                  PUBLIC_URL: "https://cod-ed.github.io/handwrite-web/dev"
+                  PUBLIC_URL: "https://builtree.github.io/handwrite-web/dev"
