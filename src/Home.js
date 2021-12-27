@@ -167,13 +167,13 @@ function Home(props) {
         <div className="spinner"></div>
       </div>
       <div className="loader" style={{ display: currentState === 6 ? "" : "none" }}>
-        <font color = "red"> {error.current} </font>
+        <font color="red"> {error.current} </font>
       </div>
       <div className="grid">
         <form onSubmit={(e) => sendImage(e)}>
           <Grid container direction="row" justify="space-around" alignItems="center">
             <div><br />
-              <div {...getRootProps({className: 'dropzone'})} className="image-container"> <input {...getInputProps()} />
+              <div {...getRootProps({ className: 'dropzone' })} className="image-container"> <input {...getInputProps()} />
                 {image[0] ?
                   <div className="input-image">
                     <img src={image[0]} alt="Selected Form" />
@@ -192,20 +192,39 @@ function Home(props) {
                   <HighlightOffOutlined />
                 </IconButton></h6></center> : ""}
             </div>
-            <div className="submit-button">
-              <Button variant="outlined" href="https://github.com/builtree/handwrite/raw/dev/handwrite_sample.pdf">Download Sample Form</Button><br /><br />
-              <Button type="submit" variant="outlined" disabled={loading() || currentState === 0}>
-                CREATE FONT
-              </Button>
-              <br /><br />
-              <div className="form-check">
-                <input className="form-check-input" type="checkbox" id="researchOption" defaultChecked></input>
-                <label className="form-check-label" htmlFor="flexCheckChecked">
-                  Opt-in for research use.
-                </label>
-              </div>
-              <br /><br />
-              <Button variant="outlined" href={font} download="font.ttf" style={{ display: Boolean(font) ? "" : "none" }}>Download your font</Button>
+            <div className="settings-wrap">
+              <h2>Font Settings</h2>
+              <form>
+                <div className="input-wrap">
+                  <label className="form-label" for="file-name">Filename</label>
+                  <input className="form-input" type="text" id="file-name" placeholder="Rickroll" autoComplete='off' />
+                </div>
+                <div className="input-wrap">
+                  <label className="form-label" for="font-family">Font Family</label>
+                  <input className="form-input" type="text" id="font-family" placeholder="Times" autoComplete='off' />
+                </div>
+                <div className="input-wrap">
+                  <label className="form-label" for="font-style">Font Style</label>
+                  <input className="form-input" type="text" id="font-style" placeholder="Regular" autoComplete='off' />
+                </div>
+                <br />
+                <div className="form-check">
+                  <input className="form-check-input" type="checkbox" id="researchOption" defaultChecked></input>
+                  <label className="form-check-toggle" for="researchOption">Toggle</label>&nbsp;&nbsp;
+                  <label className="form-check-label" htmlFor="flexCheckChecked">
+                    Opt-in for research use.
+                  </label>
+                </div>
+                <br /><br />
+                <div className="submit-button">
+                  {/* <Button variant="outlined" href="https://github.com/cod-ed/handwrite/raw/dev/handwrite_sample.pdf">Download Sample Form</Button><br /><br /> */}
+                  <Button type="submit" variant="outlined" disabled={loading() || currentState === 0}>
+                    CREATE FONT
+                  </Button>
+                  <br /><br />
+                  <Button variant="outlined" href={font} download="font.ttf" style={{ display: Boolean(font) ? "" : "none" }}>Download your font</Button>
+                </div>
+              </form>
             </div>
           </Grid>
         </form>
