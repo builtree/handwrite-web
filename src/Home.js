@@ -5,7 +5,6 @@ import { CloudUploadOutlined } from '@material-ui/icons';
 import Grid from '@material-ui/core/Grid';
 import { Button } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
-import Switch from '@material-ui/core/Switch';
 import { HighlightOffOutlined } from '@material-ui/icons';
 
 function Home(props) {
@@ -197,27 +196,28 @@ function Home(props) {
               <h2>Font Settings</h2>
               <form>
                 <div className="input-wrap">
-                  <label className="form-label" for="file-name">File name</label>
-                  <input className="form-input" type="text" id="file-name" placeholder="" autoComplete='off' />
+                  <label className="form-label" for="file-name">Filename</label>
+                  <input className="form-input" type="text" id="file-name" placeholder="Rickroll" autoComplete='off' />
                 </div>
                 <div className="input-wrap">
-                  <label className="form-label" for="font-family">Font family</label>
-                  <input className="form-input" type="text" id="font-family" autoComplete='off' />
+                  <label className="form-label" for="font-family">Font Family</label>
+                  <input className="form-input" type="text" id="font-family" placeholder="Times" autoComplete='off' />
                 </div>
                 <div className="input-wrap">
-                  <label className="form-label" for="font-style">Font style</label>
-                  <input className="form-input" type="text" id="font-style" autoComplete='off' />
+                  <label className="form-label" for="font-style">Font Style</label>
+                  <input className="form-input" type="text" id="font-style" placeholder="Regular" autoComplete='off' />
                 </div>
                 <br />
                 <div className="form-check">
                   <input className="form-check-input" type="checkbox" id="researchOption" defaultChecked></input>
+                  <label className="form-check-toggle" for="researchOption">Toggle</label>&nbsp;&nbsp;
                   <label className="form-check-label" htmlFor="flexCheckChecked">
                     Opt-in for research use.
                   </label>
                 </div>
                 <br /><br />
                 <div className="submit-button">
-                  <Button variant="outlined" href="https://github.com/cod-ed/handwrite/raw/dev/handwrite_sample.pdf">Download Sample Form</Button><br /><br />
+                  {/* <Button variant="outlined" href="https://github.com/cod-ed/handwrite/raw/dev/handwrite_sample.pdf">Download Sample Form</Button><br /><br /> */}
                   <Button type="submit" variant="outlined" disabled={loading() || currentState === 0}>
                     CREATE FONT
                   </Button>

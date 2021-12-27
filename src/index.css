@@ -118,8 +118,8 @@ code {
 
 .image-container {
     display: flex;
-    height: 500px;
-    width: 390px;
+    height: 600px;
+    width: 400px;
     align-items: center;
     text-align: center;
     border-width: 1px;
@@ -169,7 +169,6 @@ code {
 
 .settings-wrap h2{
     margin-top: 10px;
-    text-transform: uppercase;
     text-align: center;
     font-weight: 500;
     color: black;
@@ -206,11 +205,56 @@ code {
     background: white;
   }
   
-  .form-input:focus {
+.form-input:focus {
     border: 1px solid rgba(173, 217, 226, 0.987);
     box-shadow: 0 0 5px rgba(97, 212, 238, 0.987);
     background: white;
   }
+
+.form-check-input {
+	height: 0;
+	width: 0;
+	visibility: hidden;
+}
+
+.form-check-toggle {
+	cursor: pointer;
+	text-indent: 9999px;
+	width: 40px;
+	height: 25px;
+	background: grey;
+	border-radius: 100px;
+	position: relative;
+}
+
+.form-check-toggle:after {
+	content: '';
+	position: absolute;
+	top: 5px;
+	left: 5px;
+	width: 15px;
+	height: 15px;
+	background: #fff;
+	border-radius: 90px;
+	transition: 0.3s;
+}
+
+.form-check-input:checked + .form-check-toggle {
+	background: #33a9e9;
+}
+
+.form-check-input:checked + .form-check-toggle:after {
+	left: calc(100% - 5px);
+	transform: translateX(-100%);
+}
+
+.form-check-toggle:active:after {
+	width: 22px;
+}
+
+.form-check {
+    text-align: right;
+}
 
 .divider {
     color: rgb(61, 61, 61);
