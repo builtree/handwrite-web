@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "630db12d0bb746fcd1f6",
+    "revision": "fd632a38b3d5adcbb124",
     "url": "https://builtree.github.io/handwrite-web/static/css/main.fe4f7003.chunk.css"
   },
   {
-    "revision": "630db12d0bb746fcd1f6",
-    "url": "https://builtree.github.io/handwrite-web/static/js/main.84e0297e.chunk.js"
+    "revision": "fd632a38b3d5adcbb124",
+    "url": "https://builtree.github.io/handwrite-web/static/js/main.eeee3c09.chunk.js"
   },
   {
     "revision": "8b33d0a0593f54264491",
@@ -24,7 +24,7 @@ self.__precacheManifest = [
     "url": "https://builtree.github.io/handwrite-web/static/media/logo.54b0d79c.svg"
   },
   {
-    "revision": "ad1c0d9299617164cd92a796bfa06292",
+    "revision": "25f80e655bb5135ebf2c1f9693a41dc6",
     "url": "https://builtree.github.io/handwrite-web/index.html"
   }
 ];

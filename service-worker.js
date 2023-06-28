@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "https://builtree.github.io/handwrite-web/precache-manifest.cf14694e6ee1312e1ef7c7f84816b29f.js"
+  "https://builtree.github.io/handwrite-web/precache-manifest.b53003583419257bc3c409b6fd6944c0.js"
 );
 
 workbox.clientsClaim();
